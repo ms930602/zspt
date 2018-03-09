@@ -1,0 +1,16 @@
+{
+	"boss": true,
+	"curly": true,
+	"eqeqeq": true,
+	"indent": true,
+	"undef": true,
+	"unused": true,
+	"lastsemic": true,
+	"strict": false,
+	"node": true,
+
+	"browser": true,
+	"devel": true,
+	"jquery": true,
+	"predef": [ "module" ]
+}

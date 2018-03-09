@@ -1,0 +1,3 @@
+grunt serve 启动测试服务
+grunt serve:dist 启动正是环境的服务
+grunt build 打包
