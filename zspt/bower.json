@@ -18,6 +18,7 @@
   "dependencies": {
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
-    "angular-ui-router": "^1.0.15"
+    "angular-ui-router": "^1.0.15",
+    "jquery": "^3.3.1"
   }
 }
