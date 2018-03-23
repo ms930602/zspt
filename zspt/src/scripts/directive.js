@@ -163,6 +163,7 @@ dir.directive('mxDigitalClock',function () {
         link : function($scope, element, attrs) {
             $(element).clock({
                 offset: '+8',
+                am_pm: false,
                 type: 'digital'
             });
         }
@@ -198,6 +199,42 @@ dir.directive('mxSetDate',function () {
             // newDate.setDate(newDate.getDate() + 1);
             $(element).html(dayNames[newDate.getDay()] + " " + newDate.getFullYear() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getDate());
 
+        }
+    };
+});
+
+dir.directive('mxDatetimepicker',function () {
+    return {
+        restrict : 'A',
+        scope : {
+            changeDate: '=',
+            format : '@',
+            startDate : '@',
+            endDate : '@'
+        },
+        link : function($scope, element, attrs) {
+            if(!$scope.format || $scope.format === ''){
+                $scope.format = 'yyyy-mm-dd';
+            }
+            if(!$scope.startDate || $scope.startDate === ''){
+                $scope.startDate = false;
+            }
+            if(!$scope.endDate || $scope.endDate === ''){
+                $scope.endDate = false;
+            }
+            $(element).datetimepicker({
+                language: 'zh-CN',
+                autoclose: true,
+                format: $scope.format,
+                startDate: $scope.startDate,
+                endDate: $scope.endDate,
+                todayBtn:true,
+                todayHighlight:true,
+                minView: 2
+            }).on('changeDate', function(ev){
+                var result = new moment(ev.date).format('YYYY-MM-DD');  
+                $scope.changeDate.dateTime = result;
+            });
         }
     };
 });

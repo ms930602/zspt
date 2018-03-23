@@ -11,28 +11,41 @@
                     </div>
 
                 </div>
-
                 <div class="body-nest">
 
                     <div>
                         <form role="form" class="form-inline">
                             <div class="form-group">
-                                <label for="name" >部门名称:</label>
-                                <input type="text" 
-                                id="name" name="name"
-                                class="form-control">
+                                <div class="input-group" style="width: 220px;">
+                                    <span class="input-group-addon">部门名称</span>
+                                    <input type="text" ng-model="searchForm.depName" class="form-control"/>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="createTime">创建时间:</label>
-                                <input type="text"
-                                 id="createTime" 
-                                 class="form-control">
+                                <!-- 不需要的属性直接删除 -->
+                                <div class="input-group" style="width: 220px;">
+                                    <span class="input-group-addon">创建时间</span>
+                                    <input type="text" class="form-control"
+                                     ng-click="searchForm.isopen=!searchForm.isopen"
+                                     datepicker-popup ng-model="searchForm.dateTime"
+                                     is-open="searchForm.isopen" 
+                                     clear-text="清除" 
+                                     close-text="关闭"
+                                     current-text="今天"
+                                     readonly/>
+                                </div>
                             </div>
-                            <button class="btn btn-info" type="submit">
+                            <button class="btn btn-info" type="buttom" ng-click="search()">
                             <i class="icon icon-search"></i>
                             搜索
                             </button>
-                            <button class="btn btn-success" type="submit">
+                            <button class="btn" type="buttom" ng-click="research()">
+                            <i class="entypo-arrows-ccw"></i>
+                            重置
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-success" type="buttom"
+                             ng-click="openModal()">
                             <i class="entypo-plus"></i>
                             新增
                             </button>
@@ -60,42 +73,59 @@
                     </div>
                 </div>
 
-                <div class="body-nest" id="tableStatic">
+                <div class="body-nest" >
 
-                    <section id="flip-scroll">
+                    <section class="repeated-item">
 
                         <table class="table table-bordered table-striped cf">
                             <thead class="cf">
                                 <tr>
-                                    <th>序号</th>
+                                    <th style="width:60px">序号</th>
                                     <th>名字</th>
+                                    <th class="numeric">类型</th>
+                                    <th >描述</th>
                                     <th class="numeric">创建时间</th>
-                                    <th class="numeric">修改时间</th>
-                                    <th class="numeric">操作</th>
+                                    <th style="width:180px">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>name</td>
-                                    <td class="numeric">2018-03-03 10:30</td>
-                                    <td class="numeric">2018-04-05 18:30</td>
-                                    <td class="numeric">
-                                        <a href="javascript:;">
-                                            <i class="entypo-search "></i>&nbsp;查看
+                                <tr ng-repeat="info in pageInfo.result">
+                                    <td>{{$index + 1 + (pageInfo.pageNum - 1) * pageInfo.pageSize}}</td>
+                                    <td ng-bind="info.depName"></td>
+                                    <td class="numeric" ng-bind="info.type"></td>
+                                    <td ng-bind="info.describe"></td>
+                                    <td class="numeric" ng-bind="info.createTime"></td>
+                                    <td >
+                                        <a href="javascript:;" ng-click="openModal(info,1)">
+                                            <i class="entypo-search"></i>&nbsp;查看
                                         </a>
                                         &nbsp;
-                                        <a href="javascript:;" class="alert-info">
+                                        <a href="javascript:;" class="alert-info" ng-click="openModal(info,2)">
                                             <i class="fontawesome-wrench"></i>&nbsp;修改
                                         </a>
                                         &nbsp;
-                                        <a href="javascript:;" class="alert-danger">
+                                        <a href="javascript:;" class="alert-danger" ng-click="openDeleteModal(info)">
                                             <i class="entypo-cancel-squared"></i>&nbsp;删除
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div style="height:60px">
+                            <div class="pull-right">
+                                <div pagination
+                                     total-items="pageInfo.totalCount" 
+                                     boundary-links="true"
+                                     first-text="首项"
+                                     last-text="末项"
+                                     next-text="下一页"
+                                     previous-text="上一页"
+                                     ng-change="search()"
+                                     items-per-page="pageInfo.pageSize"
+                                     ng-model="pageInfo.pageNum">
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                 </div>

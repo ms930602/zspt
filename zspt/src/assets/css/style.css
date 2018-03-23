@@ -369,11 +369,11 @@ body {
     background-color: #9BAFBF!important;
     border-color: #9BAFBF!important;
 }
-.btn-default {
+/*.btn-default {
     color: #FFF!important;
     background-color: #A8BDCF!important;
     border-color: #A8BDCF!important;
-}
+}*/
 .well {
     font-size: 13px!important;
     min-height: 20px;
@@ -430,12 +430,10 @@ input:-webkit-autofill, textarea:-webkit-autofill {
 .form-control {
     background-color: #FFFFFF;
     background-image: none;
-    border: 1px solid !important;
     border-radius: 4px;
     box-shadow: none !important;
     color: #FFF;
     font-size: 13px !important;
-    height: 31px !important;
 }
 .form-update {
     background-color: #FFFFFF;
@@ -1145,7 +1143,7 @@ input::-webkit-input-placeholder {
     color: #FFFFFF;
     margin: 6px;
     padding: 10px 45px 0 20px;
-    width: 44%;
+    width: 866px;
 }
 #nt-title {
     margin:0;
@@ -1159,7 +1157,7 @@ input::-webkit-input-placeholder {
 .digital {
     border-right: 1px solid rgba(0, 0, 0, 0.4);
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
-    float: left;
+    float: right;
     margin-left: -25px;
     margin-right: -25px;
     padding-right: 15px;

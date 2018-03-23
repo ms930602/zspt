@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3 class="modal-title" align="center" ng-bind="formInfo.title"></h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name="form" ng-submit="submit()">
+      <div class="form-group" 
+      ng-class="{true:'has-error'}[form.depName.$dirty && form.depName.$invalid]">
+        <label for="depName" class="col-sm-2 control-label">
+        部门名称</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="depName" name="depName" ng-disabled="formInfo.type === 1" ng-model="formInfo.data.depName" placeholder="* 必填" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="type" class="col-sm-2 control-label">类型</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="type" ng-disabled="formInfo.type === 1" ng-model="formInfo.data.type">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="textarea" class="col-sm-2 control-label">描述</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="3" cols="5" id="textarea" ng-disabled="formInfo.type === 1" ng-model="formInfo.data.describe"></textarea>
+        </div>
+      </div>
+      <span ><span ng-bind="formInfo.submitText">表单</span>
+      <img src="images/loading.gif" alt="加载中" ng-show="formInfo.isSubmit">
+      </span>
+      <div class="pull-right">
+        <button class="btn btn-primary" ng-bind="formInfo.buttonName" type="submit" 
+        ng-disabled="formInfo.isSubmit">确定</button>
+        <button class="btn btn-warning" ng-click="cancel()">退出</button>
+      </div>
+    </form>
+</div>
